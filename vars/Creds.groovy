@@ -26,5 +26,5 @@ def call() {
     ]
     
     def credentialsProvider = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].domainCredentialsMap
-    credentialsProvider.get('system').addCredentials(Domain.global(), domainCredentials)
+    credentialsProvider.get('system').addCredentials(domainCredentials)
 }
