@@ -19,14 +19,11 @@ def call() {
         $class: 'DomainSpecification',
         credentialsId: 'my-secret-domain-id',
         domain: [
-            $class: 'Domain',
             name: 'my-domain',
             specifications: [usernameCredentials, passwordCredentials]
         ]
     ]
     
     def credentialsProvider = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].domainCredentialsMap
-    println(domainCredentials)
-    println(credentialsProvider)
-    credentialsProvider.get('system').addCredentials(domainCredentials)
+    credentialsProvider.get('system').addCredentials('system', domainCredentials)
 }
