@@ -36,7 +36,7 @@ def call() {
     
 
     def source = new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource("key")
-    def ck1 = new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL,java.util.UUID.randomUUID().toString(), "username", source, "passphrase", "description")
+    def ck1 = new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL,java.util.UUID.randomUUID().toString(), "testing1", source, "1234", "This is for testing")
 
     SystemCredentialsProvider.getInstance().getStore().addCredentials(Domain.global(), ck1)
 }
