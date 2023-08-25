@@ -15,7 +15,7 @@ def call() {
     // SystemCredentialsProvider.getInstance().getStore().addCredentials(Domain.global(), ck1)
     def credential = new UsernamePasswordCredentialsImpl(
         CredentialsScope.GLOBAL,
-        'secret_id',
+        'secret_id1',
         'YourUsername',
         'YourPassword',
         'This is for testing'
