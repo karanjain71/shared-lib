@@ -2,41 +2,28 @@ import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.plugins.credentials.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
+import com.cloudbees.plugins.credentials.CredentialsScope
+import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
+import com.cloudbees.plugins.credentials.SystemCredentialsProvider
+import com.cloudbees.plugins.credentials.domains.Domain
 
 def call() {
-    // Any valid steps can be called from this code, just like in other
-    // Scripted Pipeline
-    // println("Hello world inside scriptn1")
-    // def usernameCredentials = [
-    //     $class: 'UsernamePasswordMultiBinding',
-    //     credentialsId: 'my-secret-username-id',
-    //     usernameVariable: 'USERNAME',
-    //     passwordVariable: 'PASSWORD'
-    // ]
-    
-    // def passwordCredentials = [
-    //     $class: 'StringBinding',
-    //     credentialsId: 'my-secret-password-id',
-    //     variable: 'PASSWORD'
-    // ]
-    
-    // def domainCredentials = [
-    //     $class: 'DomainSpecification',
-    //     credentialsId: 'my-secret-domain-id',
-    //     domain: [
-    //         name: 'my-domain',
-    //         specifications: [usernameCredentials, passwordCredentials]
-    //     ]
-    // ]
-    
-    // def credentialsProvider = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].domainCredentialsMap
-    // println(domainCredentials)
-    // println(credentialsProvider)
-    // credentialsProvider.get('system').addCredentials('system', domainCredentials)
-    
 
-    def source = new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource("key")
-    def ck1 = new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL,'secret_id', "testing2", source, "Classic@idj@", "This is for testing")
+    // def source = new BasicSSHUserPrivateKey.DirectEntryPrivateKeySource("key")
+    // def ck1 = new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL,'secret_id', "testing2", source, "Classic@idj@", "This is for testing")
 
-    SystemCredentialsProvider.getInstance().getStore().addCredentials(Domain.global(), ck1)
+    // SystemCredentialsProvider.getInstance().getStore().addCredentials(Domain.global(), ck1)
+    def credential = new UsernamePasswordCredentialsImpl(
+        CredentialsScope.GLOBAL,
+        'secret_id',
+        'YourUsername',
+        'YourPassword',
+        'This is for testing'
+    )
+
+    SystemCredentialsProvider.getInstance().getStore().addCredentials(Domain.global(), credential)
 }
+
+
+
+
